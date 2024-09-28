@@ -1,0 +1,78 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Light gray background */
+    color: #343a40; /* Dark gray text */
+}
+
+/* Link styles */
+a {
+    color: #007bff; /* Bootstrap primary color */
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline; /* Underline on hover */
+    }
+}
+
+/* Card styles */
+.card {
+    background-color: #ffffff; /* White background for the card */
+    border: 1px solid #e0e0e0; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    margin: 20px auto; /* Center the card */
+    max-width: 400px; /* Limit card width */
+    padding: 20px; /* Padding inside the card */
+}
+
+/* Header styles */
+.card-header {
+    background-color: #007bff; /* Bootstrap primary color */
+    color: white; /* White text */
+    padding: 15px;
+    text-align: center;
+    font-size: 1.25rem; /* Larger font size */
+    border-bottom: 1px solid #e0e0e0; /* Light gray bottom border */
+}
+
+/* Form styles */
+.form-label {
+    font-weight: bold; /* Bold labels */
+}
+
+.form-control {
+    border: 1px solid #ced4da; /* Default border color */
+    border-radius: 4px; /* Slightly rounded corners */
+    padding: 10px; /* Padding inside input */
+    margin-bottom: 10px; /* Space below input */
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #28a745; /* Green background */
+    border: none; /* No border */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding inside button */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    
+    &:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+}
+
+/* Invalid feedback */
+.invalid-feedback {
+    color: red; /* Red text for error messages */
+    font-size: 0.875rem; /* Slightly smaller font size */
+}
+
+/* Responsive styles */
+@media (max-width: 576px) {
+    .card {
+        margin: 10px; /* Smaller margin on small screens */
+        width: 90%; /* Wider card on small screens */
+    }
+}

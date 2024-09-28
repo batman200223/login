@@ -1,12 +1,12 @@
 ﻿<div class="card">
-    <h4 class="card-header">Login</h4>
+    <h4 class="card-header">Event App</h4> <!-- Header changed to Event App -->
     <div class="card-body">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="mb-3">
-                <label class="form-label">Username</label>
+                <label class="form-label">Username or Email</label>
                 <input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                 <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Username is required</div>
+                    <div *ngIf="f.username.errors.required">Username or Email is required</div>
                 </div>
             </div>
             <div class="mb-3">
@@ -22,6 +22,10 @@
                     Login
                 </button>
                 <a routerLink="../register" class="btn btn-link">Register</a>
+            </div>
+            <!-- Forgot Password link -->
+            <div class="mt-2">
+                <a routerLink="../forgot-password" class="btn btn-link">Forgot Password?</a>
             </div>
         </form>
     </div>

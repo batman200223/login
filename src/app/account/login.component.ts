@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
     ngOnInit() {
         this.form = this.formBuilder.group({
-            username: ['', Validators.required],
+            usernameOrEmail: ['', Validators.required],
             password: ['', Validators.required]
         });
     }
@@ -41,13 +41,13 @@ export class LoginComponent implements OnInit {
         }
 
         this.loading = true;
-        this.accountService.login(this.f.username.value, this.f.password.value)
+
+        // Call the account service to login with either username or email
+        this.accountService.login(this.form.value.usernameOrEmail, this.form.value.password)
             .pipe(first())
             .subscribe({
                 next: () => {
-                    // get return url from query parameters or default to home page
-                    const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
-                    this.router.navigateByUrl(returnUrl);
+                    this.router.navigate(['../dashboard'], { relativeTo: this.route });
                 },
                 error: error => {
                     this.alertService.error(error);

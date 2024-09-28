@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
@@ -10,6 +10,9 @@ export class RegisterComponent implements OnInit {
     form!: FormGroup;
     loading = false;
     submitted = false;
+
+    // Define the list of countries
+    countries: string[] = ['United States', 'Canada', 'India', 'Australia', 'United Kingdom'];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -24,7 +27,12 @@ export class RegisterComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             username: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
+            phone: ['', Validators.required],
+            country: ['', Validators.required], // Country field is required
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            confirmPassword: ['', Validators.required]
+        }, {
+            validator: this.mustMatch('password', 'confirmPassword') // custom validator for password match
         });
     }
 
@@ -55,5 +63,23 @@ export class RegisterComponent implements OnInit {
                     this.loading = false;
                 }
             });
+    }
+
+    // Custom validator to check if password and confirm password fields match
+    mustMatch(password: string, confirmPassword: string) {
+        return (formGroup: AbstractControl) => {
+            const passwordControl = formGroup.get(password);
+            const confirmPasswordControl = formGroup.get(confirmPassword);
+
+            if (confirmPasswordControl?.errors && !confirmPasswordControl.errors.mustMatch) {
+                return;
+            }
+
+            if (passwordControl?.value !== confirmPasswordControl?.value) {
+                confirmPasswordControl?.setErrors({ mustMatch: true });
+            } else {
+                confirmPasswordControl?.setErrors(null);
+            }
+        };
     }
 }
